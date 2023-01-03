@@ -13,7 +13,7 @@ terraform {
     region         = "eu-central-1"
     bucket         = "group3-capci-tfstates-238466548014"
     key            = "source-vpc-rehost.tfstate"
-    dynamodb_table = "tf-statelock-mgn-rehost"
+    dynamodb_table = "terraform-state-locking"
     encrypt        = "true"
   }
 
