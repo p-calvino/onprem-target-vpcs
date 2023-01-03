@@ -9,9 +9,9 @@ module "vpc" {
   name = local.vpc_name
   cidr = local.vpc_cidr
 
-  azs             = [data.aws_availability_zones.available.names[0]]
-  private_subnets = [local.private_cidr]
-  public_subnets  = [local.public_cidr]
+  azs                  = [data.aws_availability_zones.available.names[0]]
+  private_subnets      = [local.private_cidr]
+  public_subnets       = [local.public_cidr]
   private_subnet_names = ["OnPrem-DB-Private"]
   public_subnet_names  = ["OnPrem-Web-Public"]
 
@@ -116,6 +116,7 @@ resource "aws_instance" "webserver" {
   subnet_id              = module.vpc.public_subnets[0]
   vpc_security_group_ids = [aws_security_group.webserver.id]
   key_name               = aws_key_pair.generated_key.key_name
+  iam_instance_profile   = "instance-profile"
   user_data              = file("${path.module}/files/scripts/web_userdata.sh")
 
   tags = {
@@ -129,6 +130,7 @@ resource "aws_instance" "database" {
   subnet_id              = module.vpc.private_subnets[0]
   vpc_security_group_ids = [aws_security_group.database.id]
   key_name               = aws_key_pair.generated_key.key_name
+  iam_instance_profile   = "instance-profile"
   user_data              = file("${path.module}/files/scripts/db_userdata.sh")
 
   tags = {
