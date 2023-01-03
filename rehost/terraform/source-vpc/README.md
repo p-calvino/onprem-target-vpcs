@@ -19,21 +19,13 @@ The following directory structure should be maintained for this repository:
             └── utils             Utility components
 ``` 
 
-## Terraform 
-
-### Scripts
-The structure and instructions provided in [TEMPLATE](./TEMPLATE/README.md) should be followed as best as possible when creating root terraform module directories.
-
-### Backend Convention
-The root terraform modules should use an S3 backend, with a DynamoDB lock file.
-```
-backend "s3" {
-  region         = "eu-central-1"
-  bucket         = "tf-state-capci-group4"
-  key            = "<root_module>.tfstate"
-  dynamodb_table = "tf-state-lock-capci-group4-<root_module>"
-  encrypt        = "true"
-}
-```
-Replace <root_module> with the corresponding root module name.  
-E.g., `key = "aws-migration-lab-rehost-source-vpc.tfstate"` for the source VPC root module.
+- 1 VPC (172.16.0.0/16) with Internet Gateway and NAT Gateway
+- 1 Public Subnet (172.16.10.0/24)
+- 1 Private Subnet (172.16.20.0/24)
+- 2 Security Groups (Inbound 80, 443 and 22 for Webserver and 5432, 22 for Database server)
+- The database SG accepts connections only from the webserver SG
+- 2 EC2 instances (1 in the public one for webserver and 1 in the private one for the database)
+- Webserver is on t3.medium. DB on m5.large
+- Postgres is configured on DB server
+- PGAdmin is working on webserver and connected with the DB
+- IAM User with policy AWSApplicationMigrationAgentPolicy attached
