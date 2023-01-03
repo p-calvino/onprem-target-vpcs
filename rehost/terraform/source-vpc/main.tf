@@ -12,6 +12,8 @@ module "vpc" {
   azs             = [data.aws_availability_zones.available.names[0]]
   private_subnets = [local.private_cidr]
   public_subnets  = [local.public_cidr]
+  private_subnet_names = ["OnPrem-DB-Private"]
+  public_subnet_names  = ["OnPrem-Web-Public"]
 
   enable_nat_gateway = true
   single_nat_gateway = true
@@ -54,6 +56,11 @@ resource "aws_security_group" "webserver" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = "OnPrem-Web-SG"
+  }
+
 }
 
 resource "aws_security_group" "database" {
@@ -82,6 +89,10 @@ resource "aws_security_group" "database" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "OnPrem-DB-SG"
   }
 }
 

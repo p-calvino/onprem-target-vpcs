@@ -1,10 +1,10 @@
 # Terraform local variables
 locals {
-  project_name        = "CAPCI-Group4"
+  project_name        = "Migration-Rehost"
   environment         = "Development"
   challenge           = "migration-rehost"
   region              = "eu-central-1"
-  vpc_name            = "Virtual-On-Prem-VPC"
+  vpc_name            = "OnPrem-VPC"
   ubuntu_ami_name     = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-*"
   ubuntu_ami_owner    = "099720109477"
   ec2_type_web        = "t3.medium"
