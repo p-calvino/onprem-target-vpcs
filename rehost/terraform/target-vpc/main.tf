@@ -9,9 +9,9 @@ module "vpc" {
   public_subnets       = [local.public_cidr]
   private_subnet_names = ["App-SB-Private", "DB-SB-Private", "Staging-SB-Private"]
   public_subnet_names  = ["Public-SB"]
-  
-  enable_nat_gateway   = true
-  single_nat_gateway   = true
+
+  enable_nat_gateway = true
+  single_nat_gateway = true
 }
 
 resource "aws_vpc_peering_connection" "squint" {

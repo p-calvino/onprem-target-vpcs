@@ -11,9 +11,9 @@ terraform {
 
   backend "s3" {
     region         = "eu-central-1"
-    bucket         = "tf-state-capci-group4"
-    key            = "mgnn-rehost.tfstate"
-    dynamodb_table = "tf-state-lock-capci-group4-mgn-rehost"
+    bucket         = "group3-capci-tfstates-238466548014"
+    key            = "target-vpc-rehost.tfstate"
+    dynamodb_table = "terraform-state-locking"
     encrypt        = "true"
   }
 
