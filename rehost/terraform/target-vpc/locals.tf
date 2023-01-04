@@ -10,6 +10,8 @@ locals {
   private_application_server = "10.0.24.0/25"
   private_db_servers_cidr    = "10.0.24.128/25"
   private_mgn                = "10.0.25.0/25"
+  webserver_sg_name          = "Target-Webserver-SG"
+  database_sg_name           = "Target-Database-SG"
   virtual_on_prem_vpc_name   = "OnPrem-VPC"
   region                     = "eu-central-1"
 
