@@ -1,5 +1,5 @@
 resource "aws_iam_instance_profile" "dev-resources-iam-profile" {
-  name = "instance-profile"
+  name = "SSM_for_EC2"
   role = aws_iam_role.dev-resources-iam-role.name
 }
 

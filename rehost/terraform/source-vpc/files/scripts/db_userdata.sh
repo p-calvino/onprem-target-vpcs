@@ -1,13 +1,13 @@
 #!/bin/bash
 
 apt update -y
-apt install postgresql -y
+apt install postgresql-12 -y
 
 # bind 5432 to the public IP so we can access it from outside the machine
-echo "listen_addresses = '*'" >> /etc/postgresql/14/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/12/main/postgresql.conf
 # update hba conf
-echo "host    all             all              0.0.0.0/0                       md5" >> /etc/postgresql/14/main/pg_hba.conf
-echo "host    all             all              ::/0                            md5" >> /etc/postgresql/14/main/pg_hba.conf
+echo "host    all             all              0.0.0.0/0                       md5" >> /etc/postgresql/12/main/pg_hba.conf
+echo "host    all             all              ::/0                            md5" >> /etc/postgresql/12/main/pg_hba.conf
 
 # restart the server
 systemctl restart postgresql

@@ -51,6 +51,7 @@ resource "aws_security_group" "webserver" {
   }
 
   egress {
+    description     = "Open outbound connection to the world"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -85,6 +86,7 @@ resource "aws_security_group" "database" {
   }
 
   egress {
+    description     = "Open outbound connection to the world"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -116,7 +118,7 @@ resource "aws_instance" "webserver" {
   subnet_id              = module.vpc.public_subnets[0]
   vpc_security_group_ids = [aws_security_group.webserver.id]
   key_name               = aws_key_pair.generated_key.key_name
-  iam_instance_profile   = "instance-profile"
+  iam_instance_profile   = "SSM_for_EC2"
   user_data              = file("${path.module}/files/scripts/web_userdata.sh")
 
   tags = {
@@ -130,7 +132,7 @@ resource "aws_instance" "database" {
   subnet_id              = module.vpc.private_subnets[0]
   vpc_security_group_ids = [aws_security_group.database.id]
   key_name               = aws_key_pair.generated_key.key_name
-  iam_instance_profile   = "instance-profile"
+  iam_instance_profile   = "SSM_for_EC2"
   user_data              = file("${path.module}/files/scripts/db_userdata.sh")
 
   tags = {

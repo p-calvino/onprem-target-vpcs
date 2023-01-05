@@ -5,7 +5,7 @@ locals {
   challenge         = "migration-rehost"
   region            = "eu-central-1"
   vpc_name          = "OnPrem-VPC"
-  ubuntu_ami_name   = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-*"
+  ubuntu_ami_name   = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-*"
   ubuntu_ami_owner  = "099720109477"
   ec2_type_web      = "t3.medium"
   ec2_type_db       = "m5.large"
